@@ -1,0 +1,5 @@
+- name: Install ipython
+  yum:
+    name: ipython
+    state: latest
+  tags: ipython

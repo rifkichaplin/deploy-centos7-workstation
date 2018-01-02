@@ -1,0 +1,23 @@
+- name: Install audacious
+  yum:
+    name: audacious
+    state: latest
+  tags: audacious
+
+- name: Install Development tools
+  yum:
+    name: "@Development tools"
+    state: present
+  tags: audacious
+
+- name: Install Dependencies
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - libcue
+    - libcue-devel
+    - pulseaudio-libs
+    - pulseaudio-libs-devel
+    - libsamplerate
+  tags: audacious

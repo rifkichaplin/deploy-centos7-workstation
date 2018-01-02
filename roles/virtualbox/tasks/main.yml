@@ -1,0 +1,47 @@
+- name: Add gpg key virtualbox
+  rpm_key:
+    state: present
+    key: https://www.virtualbox.org/download/oracle_vbox.asc
+  tags: virtualbox
+
+- name: copy source repo virtualbox
+  copy:
+    src: virtualbox.repo
+    dest: /etc/yum.repos.d/
+  tags: virtualbox
+
+- name: install epel release dependency package
+  yum:
+    name: epel-release
+    state: latest
+  tags: virtualbox
+
+- name: install dependencies package
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - binutils
+    - gcc
+    - make
+    - patch
+    - libgomp
+    - glibc-headers
+    - glibc-devel
+    - kernel-headers
+    - dkms
+    - libcddb
+    - nux-dextop-release
+    - kernel-devel
+  tags: virtualbox
+
+- name: Install virtualbox
+  yum:
+    name: VirtualBox-5.2
+    state: present
+    update_cache: yes
+  tags: virtualbox
+
+- name: Build Kernel module
+  command: /sbin/rcvboxdrv setup
+  tags: virtualbox  

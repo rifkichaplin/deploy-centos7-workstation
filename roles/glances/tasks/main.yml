@@ -1,0 +1,11 @@
+- name: Install glances
+  yum:
+    name: glances
+    state: latest
+  tags: glances
+
+- name: Install tree
+  yum:
+    name: tree
+    state: latest
+  tags: glances

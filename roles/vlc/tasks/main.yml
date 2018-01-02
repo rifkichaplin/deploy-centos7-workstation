@@ -1,0 +1,13 @@
+- name: Install vlc from package
+  yum:
+    name: "http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-1.el7.nux.noarch.rpm"
+    state: present
+  tags: vlc
+
+- name: Instal vlc
+  yum:
+    name: vlc
+    state: latest
+    update_cache: yes
+  tags: vlc
+

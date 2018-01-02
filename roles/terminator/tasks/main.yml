@@ -1,0 +1,11 @@
+- name: Install Dependecies package terminator
+  yum:
+    name: epel-release
+    state: present
+  tags: terminator
+
+- name: Install terminator
+  yum:
+    name: terminator
+    state: latest
+  tags: terminator

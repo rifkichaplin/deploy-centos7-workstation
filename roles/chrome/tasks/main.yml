@@ -1,0 +1,12 @@
+- name: Copy source repo chrome
+  copy:
+    src: google-chrome.repo
+    dest: /etc/yum.repos.d/
+  tags: chrome
+
+- name: Install chrome browser
+  yum:
+    name: google-chrome-stable
+    state: present
+    update_cache: yes
+  tags: chrome

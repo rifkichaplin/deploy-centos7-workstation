@@ -1,0 +1,21 @@
+- name: Deploy rifki rhaplin Workstation on CentOS 7
+  hosts: localhost
+  become: true
+  user: rchaplin
+
+  tasks:
+  - name: Install Development tools
+    yum:
+      name: "@Development tools"
+      state: present
+
+  roles:
+    - { role: git }
+    - { role: terminator }
+    - { role: glances }
+    - { role: audacious }
+    - { role: chrome }
+    - { role: vlc }
+    - { role: ipython }
+    - { role: virtualbox }
+    - { role: vagrant }
