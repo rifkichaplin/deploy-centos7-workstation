@@ -1,0 +1,29 @@
+- name: Install yum-utils
+  yum:
+    name: yum-utils
+    state: latest
+  tags: python36
+
+- name: Install python36 from ius
+  yum:
+    name: https://centos7.iuscommunity.org/ius-release.rpm
+    state: present
+  tags: python36
+
+- name: Install python36u
+  yum: 
+    name: python36u
+    state: latest
+  tags: python36
+
+- name: Install pip python36
+  yum:
+    name: python36u-pip
+    state: latest
+  tags: python36
+
+- name: Install python36u-devel
+  yum:
+    name: python36u-devel
+    state: latest
+  tags: python36

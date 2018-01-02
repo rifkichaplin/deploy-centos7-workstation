@@ -10,6 +10,7 @@
       state: present
 
   roles:
+    - { role: developmenttools }
     - { role: git }
     - { role: terminator }
     - { role: glances }
@@ -19,3 +20,5 @@
     - { role: ipython }
     - { role: virtualbox }
     - { role: vagrant }
+    - { role: python36 }
+    - { role: python27 }

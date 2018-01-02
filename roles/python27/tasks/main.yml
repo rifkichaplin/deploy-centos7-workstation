@@ -1,0 +1,11 @@
+- name: install pip
+  yum:
+    name: python-pip
+    state: latest
+  tags: python27
+
+- name: install virtualenv
+  pip:
+    name: virtualenv
+    state: latest
+  tags: python27
