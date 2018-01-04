@@ -1,0 +1,31 @@
+- name: Add gpg key jenkins
+  rpm_key:
+    state: present
+    key: http://pkg.jenkins-ci.org/redhat-stable/jenkins-ci.org.key
+  tags: jenkins
+
+- name: Copy source repo jenkins
+  copy:
+    src: jenkins.repo
+    dest: /etc/yum.repos.d/
+  tags: jenkins
+
+- name: Install Jenkins
+  yum:
+    name: jenkins
+    state: latest
+    update_cache: yes
+  tags: jenkins
+
+- name: Start Jenkins
+  systemd:
+    name: jenkins
+    enabled: yes
+  tags: jenkins
+
+- name: Auto boot Jenkins
+  systemd:
+    name: jenkins
+    state: started
+  tags: jenkins
+    
