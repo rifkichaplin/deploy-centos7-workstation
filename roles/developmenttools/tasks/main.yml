@@ -1,3 +1,14 @@
+- name: Install Dependecies
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - gcc
+    - libffi-devel
+    - python-devel
+    - openssl-devel
+  tags: devtools
+
 - name: Install Development tools
   yum:
     name: "@Development tools"

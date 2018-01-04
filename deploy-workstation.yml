@@ -1,4 +1,4 @@
-- name: Deploy rifki rhaplin Workstation on CentOS 7
+- name: Deploy Workstation on CentOS 7
   hosts: localhost
   become: true
   user: rchaplin
@@ -22,3 +22,4 @@
     - { role: vagrant }
     - { role: python36 }
     - { role: python27 }
+    - { role: jenkins }
