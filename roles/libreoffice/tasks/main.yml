@@ -1,0 +1,5 @@
+- name: Install Libreoffice
+  yum:
+    name: libreoffice
+    state: latest
+  tags: libreoffice

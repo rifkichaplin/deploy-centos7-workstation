@@ -23,3 +23,4 @@
     - { role: python36 }
     - { role: python27 }
     - { role: jenkins }
+    - { role: libreoffice }
