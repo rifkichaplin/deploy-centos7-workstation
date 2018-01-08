@@ -4,11 +4,6 @@
   user: rchaplin
 
   tasks:
-  - name: Install Development tools
-    yum:
-      name: "@Development tools"
-      state: present
-
   roles:
     - { role: developmenttools }
     - { role: git }
