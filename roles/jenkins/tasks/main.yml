@@ -28,4 +28,23 @@
     name: jenkins
     state: started
   tags: jenkins
-    
+
+- name: Firewall-cmd open service http to public network
+  command: firewall-cmd --zone=public --add-service=http --permanent
+  tags: jenkins
+
+- name: Firewall-cmd open port 8080 to public network
+  command: firewall-cmd --zone=public --add-port=8080/tcp --permanent
+  tags: jenkins
+
+- name: Firewall-cmd reload configuration
+  command: firewall-cmd --reload
+  tags: jenkins
+
+- name: Firewall-cmd list services
+  command: firewall-cmd --list-services
+  tags: jenkins
+
+- name: Firewall-cmd list ports
+  command: firewall-cmd --list-ports
+  tags: jenkins
