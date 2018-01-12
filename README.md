@@ -1,12 +1,12 @@
-```Deploy My own CentOS Workstation```
+#Deploy My own CentOS Workstation
 
 - yum update
 - yum install ansible
 - ssh-keygen
 - cp ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
 - chmod 600 ~/.ssh/authorized_keys
-- visudo: add "rchaplin        ALL=(ALL)       ALL"
+- visudo(uncomment): %wheel  ALL=(ALL)       NOPASSWD: ALL
 
 
-```How to Run```
-sudo ansible-playbook deploy-workstation.yml
+#How to Run
+ansible-playbook deploy-workstation.yml - hosts

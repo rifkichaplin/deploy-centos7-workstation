@@ -1,7 +1,7 @@
 - name: Deploy Workstation on CentOS 7
-  hosts: localhost
-  become: true
+  hosts: workstation
   user: rchaplin
+  become: yes
 
   tasks:
   roles:

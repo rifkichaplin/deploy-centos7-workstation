@@ -29,6 +29,12 @@
     state: started
   tags: jenkins
 
+- name: Start firewall-cmd service
+  service:
+    name: firewalld
+    state: started
+  tags: jenkins
+
 - name: Firewall-cmd open service http to public network
   command: firewall-cmd --zone=public --add-service=http --permanent
   tags: jenkins

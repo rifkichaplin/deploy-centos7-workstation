@@ -21,3 +21,10 @@
     - pulseaudio-libs-devel
     - libsamplerate
   tags: audacious
+
+- name: Copy Equalizer preset
+  copy:
+    src: equalizer_audicious.preset
+    dest: ~/.config/audacious/eq.preset
+  tags: audacious
+  become: false 
