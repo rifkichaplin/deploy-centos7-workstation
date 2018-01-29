@@ -8,4 +8,4 @@
 * visudo(uncomment): %wheel  ALL=(ALL)       NOPASSWD: ALL
 
 # How to Run
-ansible-playbook deploy-workstation.yml - hosts
+ansible-playbook deploy-workstation.yml -i hosts

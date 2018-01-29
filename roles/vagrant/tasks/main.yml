@@ -1,5 +1,5 @@
 - name: Install vagrant
   yum:
-    name: https://releases.hashicorp.com/vagrant/1.9.6/vagrant_1.9.6_x86_64.rpm
+    name: https://releases.hashicorp.com/vagrant/2.0.1/vagrant_2.0.1_x86_64.rpm
     state: present
   tags: vagrant
