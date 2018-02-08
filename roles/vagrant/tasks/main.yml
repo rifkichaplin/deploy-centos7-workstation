@@ -3,3 +3,7 @@
     name: https://releases.hashicorp.com/vagrant/2.0.1/vagrant_2.0.1_x86_64.rpm
     state: present
   tags: vagrant
+
+- name: Install Plugin vbguest
+  command: vagrant plugin install vagrant-vbguest
+  tags: vagrant
