@@ -1,0 +1,12 @@
+- name: Get Docker CE Last Installation
+  get_url:
+    url: https://get.docker.com
+    dest: /tmp/docker_install.sh
+    mode: 0755
+  tags: docker
+
+- name: Install Docker
+  shell: /tmp/docker_install.sh
+  args:
+    chdir: /tmp/
+  tags: docker
