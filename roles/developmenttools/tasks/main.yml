@@ -8,6 +8,7 @@
     - python-devel
     - openssl-devel
     - telnet
+    - httpd-tools.x86_64
   tags: devtools
 
 - name: Install Development tools
