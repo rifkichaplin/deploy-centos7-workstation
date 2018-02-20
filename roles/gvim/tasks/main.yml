@@ -1,0 +1,5 @@
+- name: Install gvim
+  yum:
+    name: gvim
+    state: latest
+  tags: gvim
