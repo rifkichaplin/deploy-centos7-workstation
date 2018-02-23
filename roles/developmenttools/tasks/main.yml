@@ -9,6 +9,8 @@
     - openssl-devel
     - telnet
     - httpd-tools.x86_64
+    - ntfs-3g
+    - fuse
   tags: devtools
 
 - name: Install Development tools
