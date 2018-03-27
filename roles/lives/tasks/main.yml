@@ -1,0 +1,5 @@
+- name: Install Live video editor
+  yum:
+    name: lives
+    state: latest
+  tags: lives

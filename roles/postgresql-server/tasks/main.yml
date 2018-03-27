@@ -1,0 +1,35 @@
+- name: Install Postgresql-server
+  yum:
+    name: postgresql-server
+    state: latest
+  when:
+    - ansible_distribution == "CentOS"
+    - ansible_distribution_major_version == "7"
+  tags: postgresql
+
+- name: Install postgresql-contrib
+  yum:
+    name: postgresql-contrib
+    state: latest
+  when:
+    - ansible_distribution == "CentOS"
+    - ansible_distribution_major_version == "7"
+  tags: postgresql
+
+- name: Install Postgresql-server
+  apt:
+    name: postgresql-server
+    state: latest
+  when:
+    - ansible_distribution == "Debian"
+    - ansible_distribution_major_version == "16.04"
+  tags: postgresql
+
+- name: Install postgresql-contrib
+  apt:
+    name: postgresql-contrib
+    state: latest
+  when:
+    - ansible_distribution == "Debian"
+    - ansible_distribution_major_version == "16.04"
+  tags: postgresql

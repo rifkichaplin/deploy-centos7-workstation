@@ -2,14 +2,57 @@
   yum:
     name: python-pip
     state: latest
+  when:
+    - ansible_os_family == "CentOS"
+    - ansible_distribution_major_version == "7"
   tags: python27
 
 - name: upgrade pip
   command: pip install --upgrade pip
+  when:
+    - ansible_os_family == "CentOS"
+    - ansible_distribution_major_version == "7"
   tags: python27
 
 - name: install virtualenv
   pip:
     name: virtualenv
     state: latest
+  when:
+    - ansible_os_family == "CentOS"
+    - ansible_distribution_major_version == "7"
+  tags: python27
+
+- name: install python27
+  apt:
+    name: python2.7
+    state: present
+  when:
+    - ansible_os_family == "Debian"
+    - ansible_distribution_major_version == "16.04"
+  tags: python2.7
+
+- name: install pip
+  apt:
+    name: python-pip
+    state: latest
+  when:
+    - ansible_os_family == "Debian"
+    - ansible_distribution_major_version == "16.04"
+  tags: python27
+
+- name: upgrade pip
+  command: pip install --upgrade pip
+  when:
+    - ansible_os_family == "Debian"
+    - ansible_distribution_major_version == "16.04"
+  tags: python27
+
+- name: install virtualenv
+  pip:
+    name: virtualenv
+    state: latest
+  when:
+    - ansible_os_family == "Debian"
+    - ansible_distribution_major_version == "16.04"
   tags: python27

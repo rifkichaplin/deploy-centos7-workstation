@@ -11,6 +11,7 @@
     - httpd-tools.x86_64
     - ntfs-3g
     - fuse
+    - whois
   tags: devtools
 
 - name: Install Development tools

@@ -1,0 +1,11 @@
+- name: Checkout Repo
+  hosts: workstation
+  user: rchaplin
+  connection: local
+
+  tasks:
+    - name: Checkout Repo
+      git: repo={{ git_remote_repo }}
+        dest: {{ git_local_repo }}
+        version: {{ git_version }}
+        force: yes

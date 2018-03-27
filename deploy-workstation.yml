@@ -19,3 +19,5 @@
     - { role: python27 }
     - { role: jenkins }
     - { role: libreoffice }
+    - { role: gvim }
+    - { role: lives }
