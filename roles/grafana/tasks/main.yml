@@ -1,3 +1,50 @@
+- name: Add gpg key influxdb
+  apt_key:
+    url: https://repos.influxdata.com/influxdb.key
+    state: present
+  tags: grafana
+
+- name: Add influxdb to repository
+  copy:
+    src: influxdb.list
+    dest: /etc/apt/sources.list.d/influxdb.list
+  tags: grafana
+
+- name: Install Influxdb
+  apt:
+    name: influxdb
+    state: present
+    update_cache: True
+  tags: grafana
+
+- name: Add gpg key telegraf
+  apt_key:
+    url: https://repos.influxdata.com/influxdb.key
+    state: present
+  tags: grafana
+
+- name: Add telegrad to repository
+  command: echo "deb https://repos.influxdata.com/Ubuntu xenial stable"
+
+- name: Install collected data telegraf
+  apt:
+    name: telegraf
+    state: latest
+    update_cache: True
+  tags: grafana
+
+- name: Copy telegraf configuration
+  copy:
+    src: telegraf.conf
+    dest: /etc/telegraf/telegraf.conf
+  tags: grafana
+
+- name: restart Service telegraf
+  service:
+    name: telegraf
+    state: restarted
+  tags: grafana
+
 - name: Add gpg key grafana
   apt_key:
     state: present
@@ -15,8 +62,8 @@
     update_cache: True
   tags: grafana
 
-- name: restart service grafana
+- name: start service grafana
   service:
     name: grafana-server
-    state: restarted
+    state: started
   tags: grafana
