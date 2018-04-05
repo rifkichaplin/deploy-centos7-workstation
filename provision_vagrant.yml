@@ -9,3 +9,4 @@
     - { role: python27 }
     - { role: postgresql-server }
     - { role: grafana }
+    - { role: springboot }

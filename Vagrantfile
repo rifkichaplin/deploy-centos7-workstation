@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
     ansible.host_key_checking = false
     ansible.playbook = "provision_vagrant.yml"
     ansible.limit = 'all'
-    ansible.verbose = 'vv'
+    ansible.verbose = 'vvv'
     ansible.raw_ssh_args = ['-o ForwardAgent=yes']
   end
 

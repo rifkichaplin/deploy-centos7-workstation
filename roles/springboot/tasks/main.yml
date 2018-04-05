@@ -1,0 +1,36 @@
+- name: clone git springboot
+  git:
+    repo: "https://github.com/spring-guides/gs-rest-service.git"
+    dest: "/home/vagrant/springboot"
+    update: yes
+    force: yes
+  become: no
+  tags: springboot
+
+- name: mkdir apps springboot
+  file:
+    path: /home/vagrant/springboot/initial/src/main/java/hello
+    state: directory
+    mode: 0755
+  tags: springboot
+
+- name: copy state gradle file
+  copy:
+    src: build.gradle
+    dest: /home/vagrant/springboot/initial/build.gradle
+  tags: springboot
+
+- name: Copy java files
+  copy:
+    src: "{{ item }}"
+    dest: "/home/vagrant/springboot/initial/src/main/java/hello/{{ item }}"
+  with_items:
+    - Greeting.java
+    - GreetingController.java
+    - Application.java
+  tags: springboot 
+
+- name: compile apps
+  shell: /home/vagrant/springboot/initial/gradlew build
+  become: no
+  tags: springboot
