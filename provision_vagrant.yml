@@ -10,3 +10,4 @@
     - { role: postgresql-server }
     - { role: grafana }
     - { role: springboot }
+    - { role: nginx }

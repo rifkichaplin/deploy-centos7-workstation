@@ -4,7 +4,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/xenial64"
   config.vm.hostname = "dockerhost"
   config.vm.network :forwarded_port, guest: 22, host: 2223, id: 'ssh'
-  config.vm.network :forwarded_port, guest: 3000, host: 3000
+  config.vm.network :forwarded_port, guest: 80, host: 3000 #grafana
   config.ssh.port = 2223
   config.ssh.insert_key = false
   config.vm.network :private_network, ip: "192.168.1.10"

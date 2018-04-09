@@ -1,0 +1,39 @@
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: latest
+    update_cache: True
+  tags: nginx
+
+- name: Copy grafana vhost
+  template:
+    src: grafana.j2
+    dest: /etc/nginx/sites-available/grafana
+  tags: nginx
+
+- name: Unlink site availaible default nginx
+  file:
+    path: "/etc/nginx/sites-enabled/grafana"
+    state: absent
+  tags: nginx
+
+- name: link to site-enable
+  file:
+    src: /etc/nginx/sites-available/grafana
+    dest: /etc/nginx/sites-enabled/grafana
+    owner: root
+    group: root
+    state: link
+  tags: nginx
+   
+- name: Restart nginx
+  service:
+    name: nginx
+    state: restarted
+  tags: nginx
+
+- name: Enabled service 
+  service:
+    name: nginx
+    enabled: True
+  tags: nginx

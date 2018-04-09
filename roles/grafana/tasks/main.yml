@@ -67,3 +67,9 @@
     name: grafana-server
     state: started
   tags: grafana
+
+- name: Enable Service Grafana
+  service:
+    name: grafana-server
+    enabled: True
+  tags: grafana
