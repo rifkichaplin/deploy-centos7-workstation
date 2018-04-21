@@ -25,7 +25,22 @@
     group: root
     state: link
   tags: nginx
-   
+
+- name: Copy kibana vhost
+  template:
+    src: kibana.j2
+    dest: /etc/nginx/sites-available/kibana
+  tags: nginx
+
+- name: link to site-enable
+  file:
+    src: /etc/nginx/sites-available/kibana
+    dest: /etc/nginx/sites-enabled/kibana
+    owner: root
+    group: root
+    state: link
+  tags: nginx
+
 - name: Restart nginx
   service:
     name: nginx

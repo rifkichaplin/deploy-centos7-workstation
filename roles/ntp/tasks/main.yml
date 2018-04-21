@@ -1,0 +1,28 @@
+- name: Install ntp
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - ntp
+    - ntpdate
+  tags: ntp
+
+- name: disabled timedatectl
+  shell: timedatectl set-ntp no
+  tags: ntp
+
+- name: Copy configuration ntp
+  template:
+    src: server-pool-ntp.conf.j2
+    dest: /etc/ntp.conf
+  tags: ntp
+
+- name: set to Asia/jakarta
+  shell: sudo timedatectl set-timezone Asia/Jakarta
+  tags: ntp
+
+- name: Restart ntp
+  service:
+    name: ntp
+    state: restarted
+  tags: ntp  

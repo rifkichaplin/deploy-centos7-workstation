@@ -12,6 +12,7 @@
     - ntfs-3g
     - fuse
     - whois
+    - jq
   tags: devtools
 
 - name: Install Development tools

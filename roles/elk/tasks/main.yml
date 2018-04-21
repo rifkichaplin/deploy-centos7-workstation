@@ -1,0 +1,89 @@
+- name: Add Repo kibana to source list
+  apt_repository:
+    repo: "deb https://artifacts.elastic.co/packages/6.x/apt stable main"
+  tags: elk
+
+- name: Add apt key elastic
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    validate_certs: no
+    state: present
+  tags: elk
+
+- name: Install Kibana
+  apt:
+    name: kibana=6.2.4
+    state: present
+    update_cache: True
+  tags: elk
+
+- name: Copy configuration kibana
+  template:
+    src: kibana.yml.j2
+    dest: /etc/kibana/kibana.yml
+  tags: elk
+
+- name: Restart kibana service
+  service:
+    name: kibana
+    state: restarted
+  tags: elk
+
+- name: Enabled kibana service
+  service:
+    name: kibana
+    enabled: True
+  tags: elk
+
+- name: Install Elasticsearch
+  apt:
+    name: elasticsearch=6.2.4
+    state: present
+    update_cache: True
+  tags: elk
+
+- name: Copy configuration elasticsearch
+  template:
+    src: elastichsearch.yml.j2
+    dest: /etc/elasticsearch/elasticsearch.yml
+  tags: elk
+
+- name: Restart service elasticsearh
+  service:
+    name: elasticsearch
+    state: restarted
+  tags: elk
+
+- name: Enable Service elasticsearch
+  service:
+    name: elasticsearch
+    enabled: True
+  tags: elk
+
+- name: Install logstash
+  apt:
+    name: logstash
+    state: latest
+    update_cache: True
+  tags: elk
+
+- name: Copy logstash configuration
+  template:
+    src: "{{ item }}.j2"
+    dest: "/etc/logstash/conf.d/{{ item }}"
+  with_items:
+    - 02-nginx-input.conf
+    - 10-nginx-filter.conf
+    - 30-elasticsearch-output.conf
+
+- name: Restart logstash
+  service:
+    name: logstash
+    state: restarted
+  tags: logstash
+
+- name: Enable startup service logstash
+  service:
+    name: logstash
+    enabled: True
+  tags: logstash

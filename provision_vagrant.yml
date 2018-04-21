@@ -5,9 +5,11 @@
   gather_facts: true
 
   roles:
+    - { role: ntp }
     #- { role: docker }
     - { role: python27 }
-    - { role: postgresql-server }
+    #- { role: postgresql-server }
     - { role: grafana }
-    - { role: springboot }
+    #- { role: springboot }
     - { role: nginx }
+    - { role: elk }
