@@ -48,6 +48,11 @@
     dest: /etc/elasticsearch/elasticsearch.yml
   tags: elk
 
+- name: Daemon Reload
+  systemd:
+    daemon_reload: True
+  tags: elk
+
 - name: Restart service elasticsearh
   service:
     name: elasticsearch
@@ -59,6 +64,21 @@
     name: elasticsearch
     enabled: True
   tags: elk
+
+- name: enable plugins ingest-user-agent
+  shell: /usr/share/elasticsearch/bin/elasticsearch-plugin install ingest-user-agent
+  ignore_errors: yes
+  tags: elk
+
+- name: enable plugins ingest-geoip
+  expect:
+    command: "/usr/share/elasticsearch/bin/elasticsearch-plugin install ingest-geoip"
+    responses:
+      Question:
+        - y
+  ignore_errors: yes
+  tags: elk
+
 
 - name: Install logstash
   apt:
@@ -75,15 +95,42 @@
     - 02-nginx-input.conf
     - 10-nginx-filter.conf
     - 30-elasticsearch-output.conf
+  tags: elk
 
 - name: Restart logstash
   service:
     name: logstash
     state: restarted
-  tags: logstash
+  tags: elk
 
 - name: Enable startup service logstash
   service:
     name: logstash
     enabled: True
-  tags: logstash
+  tags: elk
+
+- name: Install filebeat
+  apt:
+    name: filebeat
+    state: latest
+  tags: elk
+
+- name: Copy nginx modules template
+  copy:
+    src: filebeat.nginx.yml.j2
+    dest: /etc/filebeat/modules.d/nginx.yml
+  tags: elk
+
+- name: Restart filebeat service
+  service:
+    name: filebeat
+    state: restarted
+  tags: elk
+
+- name: filebeat enable modules nginx
+  shell: filebeat modules enable nginx
+  tags: elk
+
+- name: filebeat setup initial environment
+  shell: filebeat setup -e
+  tags: elk
