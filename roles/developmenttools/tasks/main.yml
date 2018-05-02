@@ -13,6 +13,7 @@
     - fuse
     - whois
     - jq
+    - NetworkManager-openvpn
   tags: devtools
 
 - name: Install Development tools
