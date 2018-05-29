@@ -14,6 +14,7 @@
     - whois
     - jq
     - NetworkManager-openvpn
+    - jpegoptim
   tags: devtools
 
 - name: Install Development tools
