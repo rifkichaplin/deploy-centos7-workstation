@@ -15,6 +15,7 @@
     - jq
     - NetworkManager-openvpn
     - jpegoptim
+    - cairo-dock
   tags: devtools
 
 - name: Install Development tools
